@@ -1,0 +1,53 @@
+export default {
+  id: 'ww2',
+  subject: 'history',
+  subjectLabel: 'Történelem',
+  subjectIcon: '📜',
+  title: 'II. világháború',
+  description: 'Személyek, dátumok és fogalmak a második világháborúból',
+  icon: '⚔️',
+  categories: {
+    person:  { label: 'Személy',  icon: '👤' },
+    date:    { label: 'Dátum',    icon: '📅' },
+    concept: { label: 'Fogalom',  icon: '📖' },
+  },
+  items: [
+    // People
+    { id: 'p1', prompt: 'Winston Churchill',      answer: 'Brit miniszterelnök a háború alatt',                               category: 'person'  },
+    { id: 'p2', prompt: 'Franklin D. Roosevelt',  answer: 'Amerikai elnök a háború elején',                                  category: 'person'  },
+    { id: 'p3', prompt: 'Harry S. Truman',        answer: 'Amerikai elnök a háború végén, az atombomba bevetésekor',         category: 'person'  },
+    { id: 'p4', prompt: 'Szálasi Ferenc',         answer: 'A magyar nyilas párt vezetője',                                   category: 'person'  },
+    { id: 'p5', prompt: 'Teleki Pál',             answer: 'Magyar miniszterelnök a háború előtt',                            category: 'person'  },
+    { id: 'p6', prompt: 'Sztójay Döme',           answer: 'Magyar miniszterelnök a német megszállás idején',                 category: 'person'  },
+
+    // Dates
+    { id: 'd1',  prompt: '1938.11.02.',   answer: 'I. bécsi döntés',                                            category: 'date' },
+    { id: 'd2',  prompt: '1939.09.01.',   answer: 'A II. világháború kezdete',                                  category: 'date' },
+    { id: 'd3',  prompt: '1940.08.30.',   answer: 'II. bécsi döntés',                                           category: 'date' },
+    { id: 'd4',  prompt: '1941.06.22.',   answer: 'Barbarossa hadművelet',                                      category: 'date' },
+    { id: 'd5',  prompt: '1941.12.07.',   answer: 'Pearl Harbor: japán támadás az Egyesült Államok ellen',      category: 'date' },
+    { id: 'd6',  prompt: '1944.03.19.',   answer: 'A németek megszállják Magyarországot',                       category: 'date' },
+    { id: 'd7',  prompt: '1944.06.06.',   answer: 'Normandiai partraszállás',                                   category: 'date' },
+    { id: 'd8',  prompt: '1944.10.15.',   answer: 'Horthy kiáltványa',                                          category: 'date' },
+    { id: 'd9',  prompt: '1945. április', answer: 'Magyarországon véget ér a háború',                           category: 'date' },
+    { id: 'd10', prompt: '1945.05.08.',   answer: 'Európában véget ér a II. világháború',                       category: 'date' },
+    { id: 'd11', prompt: '1945.09.02.',   answer: 'Japán leteszi a fegyvert, vége a II. világháborúnak',        category: 'date' },
+
+    // Concepts
+    { id: 'c1',  prompt: 'A háború ürügye',       answer: 'A gliwicei rádióállomás „megtámadása"',                          category: 'concept' },
+    { id: 'c2',  prompt: 'Barbarossa hadművelet', answer: 'A Szovjetunió megtámadásának terve',                             category: 'concept' },
+    { id: 'c3',  prompt: 'Teheráni konferencia',  answer: 'A normandiai partraszállás megtervezése',                        category: 'concept' },
+    { id: 'c4',  prompt: 'Jaltai konferencia',    answer: 'Németország négy megszállási övezetre bontása',                  category: 'concept' },
+    { id: 'c5',  prompt: 'Gettó',                 answer: 'Elkülönített városrész, ahol csak zsidók laktak',                category: 'concept' },
+    { id: 'c6',  prompt: 'Deportálás',            answer: 'A zsidók elszállítása, költöztetése',                            category: 'concept' },
+    { id: 'c7',  prompt: 'Koncentrációs tábor',   answer: 'Kezdetben munkatábor, majd megsemmisítő tábor',                  category: 'concept' },
+    { id: 'c8',  prompt: 'Vörös Hadsereg',        answer: 'A szovjet hadsereg',                                             category: 'concept' },
+    { id: 'c9',  prompt: 'Nyilasok',              answer: 'Szálasi Ferenc által vezetett németbarát párt',                  category: 'concept' },
+    { id: 'c10', prompt: '1. zsidó törvény',      answer: 'Bizonyos szakmákban legfeljebb 20% lehetett zsidó',             category: 'concept' },
+    { id: 'c11', prompt: '2. zsidó törvény',      answer: 'Bizonyos szakmákban legfeljebb 6% lehetett zsidó',              category: 'concept' },
+    { id: 'c12', prompt: '3. zsidó törvény',      answer: 'Megtiltották a zsidók és nem zsidók közötti házasságot',        category: 'concept' },
+    { id: 'c13', prompt: 'Nürnbergi per',         answer: 'A háborús bűnösök felelősségre vonása',                         category: 'concept' },
+    { id: 'c14', prompt: '1. bécsi döntés',       answer: 'Magyarország visszakapja a Felvidéket és Kárpátalját',          category: 'concept' },
+    { id: 'c15', prompt: '2. bécsi döntés',       answer: 'Magyarország visszakapja Erdélyt és Székelyföldet',             category: 'concept' },
+  ],
+}

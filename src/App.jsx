@@ -2,15 +2,16 @@ import { useState, useEffect } from 'react'
 import Home from './components/Home'
 import Quiz from './components/Quiz'
 import Results from './components/Results'
+import { decks } from './data/decks/index'
 
 const TABS = [
   { id: 'home', label: 'Főoldal', icon: '🏠' },
-  { id: 'quiz', label: 'Kvíz', icon: '❓' },
   { id: 'profile', label: 'Profil', icon: '🏆' },
 ]
 
 export default function App() {
   const [page, setPage] = useState('home')
+  const [selectedDeck, setSelectedDeck] = useState(() => decks[0])
   const [dark, setDark] = useState(() => {
     if (typeof window !== 'undefined') {
       return localStorage.getItem('dark') === 'true'
@@ -23,6 +24,11 @@ export default function App() {
     localStorage.setItem('dark', dark)
   }, [dark])
 
+  const handleNavigate = (newPage, deck = null) => {
+    if (deck) setSelectedDeck(deck)
+    setPage(newPage)
+  }
+
   return (
     <div className="flex min-h-screen flex-col bg-slate-50 text-slate-900 transition-colors dark:bg-slate-900 dark:text-slate-100">
       {/* Minimal header */}
@@ -30,21 +36,8 @@ export default function App() {
         <div className="mx-auto flex max-w-xl items-center justify-between px-4 py-2.5">
         <div className="flex items-center gap-2">
           <button onClick={() => setPage('home')} className="flex items-center gap-1.5 text-lg font-bold tracking-tight">
-            ⚔️ <span className="bg-gradient-to-r from-emerald-600 to-blue-600 bg-clip-text text-transparent dark:from-emerald-400 dark:to-blue-400">Haditerv</span>
+            🧠 <span className="bg-gradient-to-r from-emerald-600 to-blue-600 bg-clip-text text-transparent dark:from-emerald-400 dark:to-blue-400">Tudáspróba</span>
           </button>
-          {import.meta.env.DEV && (
-            <button
-              onClick={() => {
-                if (confirm('Minden adat törlése (localStorage)?')) {
-                  localStorage.clear()
-                  window.location.reload()
-                }
-              }}
-              className="rounded bg-red-100 px-1.5 py-0.5 text-[10px] font-bold text-red-600 dark:bg-red-900/40 dark:text-red-400"
-            >
-              RESET
-            </button>
-          )}
         </div>
           <button
             onClick={() => setDark((d) => !d)}
@@ -58,8 +51,8 @@ export default function App() {
 
       {/* Main content - extra padding bottom for tab bar */}
       <main className="mx-auto w-full max-w-xl flex-1 px-4 py-5 pb-24">
-        {page === 'home' && <Home navigate={setPage} />}
-        {page === 'quiz' && <Quiz />}
+        {page === 'home' && <Home navigate={handleNavigate} />}
+        {page === 'quiz' && <Quiz deck={selectedDeck} onBack={() => setPage('home')} />}
         {page === 'profile' && <Results />}
       </main>
 

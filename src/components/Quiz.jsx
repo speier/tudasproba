@@ -2,32 +2,20 @@ import { useState, useEffect, useRef } from 'react'
 import { generateQuizQuestions } from '../data/questions'
 import { loadResults, saveResult, BADGES, findNewBadges } from '../data/badges'
 
-const STORAGE_KEY = 'quizProgress'
-
-function loadProgress() {
+function loadProgress(key) {
   try {
-    const raw = localStorage.getItem(STORAGE_KEY)
+    const raw = localStorage.getItem(key)
     if (raw) return JSON.parse(raw)
   } catch {}
   return null
 }
 
-function saveProgress(state) {
-  localStorage.setItem(STORAGE_KEY, JSON.stringify(state))
+function saveProgress(key, state) {
+  localStorage.setItem(key, JSON.stringify(state))
 }
 
-function clearProgress() {
-  localStorage.removeItem(STORAGE_KEY)
-}
-
-function initState() {
-  const saved = loadProgress()
-  if (saved && !saved.finished && saved.questions?.[0]?.label) {
-    return { ...saved, answerAnim: null }
-  }
-  clearProgress()
-  const questions = generateQuizQuestions(10)
-  return { questions, current: 0, selected: null, score: 0, finished: false, streak: 0, answerAnim: null }
+function clearProgress(key) {
+  localStorage.removeItem(key)
 }
 
 function Confetti() {
@@ -62,8 +50,18 @@ function StreakBadge({ streak }) {
   )
 }
 
-export default function Quiz() {
-  const [state, setState] = useState(initState)
+export default function Quiz({ deck, onBack }) {
+  const STORAGE_KEY = `quizProgress_${deck.id}`
+
+  const [state, setState] = useState(() => {
+    const saved = loadProgress(STORAGE_KEY)
+    if (saved && !saved.finished && saved.questions?.[0]?.label) {
+      return { ...saved, answerAnim: null }
+    }
+    clearProgress(STORAGE_KEY)
+    const questions = generateQuizQuestions(deck)
+    return { questions, current: 0, selected: null, score: 0, finished: false, streak: 0, answerAnim: null }
+  })
   const [newBadges, setNewBadges] = useState([])
   const [showConfetti, setShowConfetti] = useState(false)
   const [earnedXp, setEarnedXp] = useState(0)
@@ -75,7 +73,7 @@ export default function Quiz() {
 
   useEffect(() => {
     const { answerAnim, ...toSave } = state
-    saveProgress(toSave)
+    saveProgress(STORAGE_KEY, toSave)
   }, [state])
 
   // Scroll question into view on change
@@ -116,7 +114,7 @@ export default function Quiz() {
         setNewBadges(freshBadges)
         setEarnedXp(earned.lastEarnedXp || 0)
         if (s.score >= total * 0.8) setShowConfetti(true)
-        clearProgress()
+        clearProgress(STORAGE_KEY)
         return { ...s, finished: true, selected: null, answerAnim: null }
       }
       return { ...s, current: s.current + 1, selected: null, answerAnim: null }
@@ -124,7 +122,8 @@ export default function Quiz() {
   }
 
   const handleRestart = () => {
-    const questions = generateQuizQuestions(10)
+    clearProgress(STORAGE_KEY)
+    const questions = generateQuizQuestions(deck)
     const fresh = { questions, current: 0, selected: null, score: 0, finished: false, streak: 0, answerAnim: null }
     setNewBadges([])
     setShowConfetti(false)
@@ -144,6 +143,7 @@ export default function Quiz() {
         {showConfetti && <Confetti />}
 
         <div className="animate-bounce-in text-6xl">{badge?.icon || '📝'}</div>
+        <p className="text-sm font-medium text-slate-500 dark:text-slate-400">{deck.icon} {deck.title}</p>
         <h2 className="text-2xl font-bold">Eredmény</h2>
 
         <div className="flex flex-col items-center gap-2">
@@ -187,12 +187,22 @@ export default function Quiz() {
             : '📖 Több tanulás szükséges!'}
         </p>
 
-        <button
-          onClick={handleRestart}
-          className="animate-pulse-glow rounded-xl bg-emerald-600 px-8 py-3 text-lg font-semibold text-white shadow-md transition-transform hover:scale-[1.02] hover:bg-emerald-700 active:scale-[0.98]"
-        >
-          🔄 Új játék
-        </button>
+        <div className="flex gap-3">
+          <button
+            onClick={handleRestart}
+            className="animate-pulse-glow flex-1 rounded-xl bg-emerald-600 px-6 py-3 text-lg font-semibold text-white shadow-md transition-transform hover:scale-[1.02] hover:bg-emerald-700 active:scale-[0.98]"
+          >
+            🔄 Új játék
+          </button>
+          {onBack && (
+            <button
+              onClick={onBack}
+              className="rounded-xl border-2 border-slate-200 bg-white px-4 py-3 font-medium text-slate-600 shadow-sm transition-transform hover:scale-[1.02] active:scale-[0.98] dark:border-slate-700 dark:bg-slate-800 dark:text-slate-300"
+            >
+              📚 Paklik
+            </button>
+          )}
+        </div>
       </div>
     )
   }
@@ -200,7 +210,16 @@ export default function Quiz() {
   return (
     <div className="flex flex-col gap-6" ref={questionRef}>
       <div className="flex items-center justify-between">
-        <h2 className="text-2xl font-bold">Kvíz</h2>
+        <div className="flex items-center gap-2">
+          <button
+            onClick={onBack}
+            className="rounded-lg p-1.5 text-slate-400 transition-colors hover:bg-slate-100 hover:text-slate-600 dark:hover:bg-slate-700 dark:hover:text-slate-300"
+            aria-label="Vissza"
+          >
+            ←
+          </button>
+          <h2 className="text-lg font-bold">{deck.icon} {deck.title}</h2>
+        </div>
         <StreakBadge streak={streak} />
       </div>
 
@@ -220,7 +239,9 @@ export default function Quiz() {
       {/* Question card – school notebook style */}
       <div className="animate-slide-up rounded-xl bg-white p-5 shadow-md dark:bg-slate-800">
         <p className="mb-1 text-xs font-medium uppercase tracking-wide text-slate-400 dark:text-slate-500">
-          {q.type === 'person' ? '👤 Személy' : q.type === 'date' ? '📅 Dátum' : '📖 Fogalom'}
+          {q.category && deck.categories?.[q.category]
+            ? `${deck.categories[q.category].icon} ${deck.categories[q.category].label}`
+            : '❓ Kérdés'}
         </p>
         <p className="text-2xl font-bold">{q.label}</p>
       </div>

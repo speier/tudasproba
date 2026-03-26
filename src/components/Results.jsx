@@ -1,9 +1,11 @@
 import { useState, useEffect } from 'react'
 import { loadResults, getRank, getNextRank, ACHIEVEMENTS, generateShareText } from '../data/badges'
+import { decks } from '../data/decks/index'
 
 export default function Results() {
   const [data, setData] = useState(loadResults)
   const [copied, setCopied] = useState(false)
+  const [showResetConfirm, setShowResetConfirm] = useState(false)
 
   useEffect(() => {
     setData(loadResults())
@@ -27,7 +29,7 @@ export default function Results() {
     const text = generateShareText(data)
     try {
       if (navigator.share) {
-        await navigator.share({ title: 'Haditerv eredmény', text })
+        await navigator.share({ title: 'Tudáspróba eredmény', text })
         return
       }
       await navigator.clipboard.writeText(text)
@@ -44,7 +46,13 @@ export default function Results() {
 
   const handleReset = () => {
     localStorage.removeItem('quizResults')
+    for (const deck of decks) {
+      localStorage.removeItem(`quizProgress_${deck.id}`)
+    }
+    // also clear legacy key
+    localStorage.removeItem('quizProgress')
     setData({ last: null, best: null, attempts: 0, streak: 0, bestStreak: 0, badges: [], history: [], xp: 0, dailyStreak: 0, bestDailyStreak: 0 })
+    setShowResetConfirm(false)
   }
 
   const history = data.history || []
@@ -138,12 +146,39 @@ export default function Results() {
 
       {/* Reset */}
       {data.attempts > 0 && (
-        <button
-          onClick={handleReset}
-          className="rounded-lg px-4 py-2 text-sm text-slate-400 transition-colors hover:bg-slate-100 hover:text-slate-600 dark:hover:bg-slate-800 dark:hover:text-slate-300"
-        >
-          Eredmények törlése
-        </button>
+        <div className="rounded-2xl border border-red-100 bg-white p-4 shadow-sm dark:border-red-900/30 dark:bg-slate-800">
+          {!showResetConfirm ? (
+            <button
+              onClick={() => setShowResetConfirm(true)}
+              className="w-full rounded-lg px-4 py-2.5 text-sm font-medium text-red-500 transition-colors hover:bg-red-50 hover:text-red-700 dark:hover:bg-red-900/20"
+            >
+              🗑️ Összes adat törlése
+            </button>
+          ) : (
+            <div className="flex flex-col gap-3">
+              <div className="text-center">
+                <p className="text-sm font-bold text-red-600 dark:text-red-400">⚠️ Biztosan törölsz mindent?</p>
+                <p className="mt-1 text-xs text-slate-500 dark:text-slate-400">
+                  Ez véglegesen törli az összes eredményed, XP-t, kitüntetést és napi sorozatot. Nem visszavonható.
+                </p>
+              </div>
+              <div className="flex gap-2">
+                <button
+                  onClick={() => setShowResetConfirm(false)}
+                  className="flex-1 rounded-lg border border-slate-200 py-2 text-sm font-medium text-slate-600 transition-colors hover:bg-slate-50 dark:border-slate-700 dark:text-slate-300 dark:hover:bg-slate-700"
+                >
+                  Mégsem
+                </button>
+                <button
+                  onClick={handleReset}
+                  className="flex-1 rounded-lg bg-red-600 py-2 text-sm font-bold text-white transition-colors hover:bg-red-700"
+                >
+                  Igen, törlöm
+                </button>
+              </div>
+            </div>
+          )}
+        </div>
       )}
 
       {/* About */}

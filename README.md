@@ -1,16 +1,24 @@
-# ⚔️ Haditerv
+# 🧠 Tudáspróba
 
-Interaktív történelem kvíz a II. világháborúról – magyar általános iskolásoknak.
+Interaktív kvíz gyakorló gyerekeknek – paklikba rendezett kérdésekkel, tantárgyanként.
 
 ## ✨ Jellemzők
 
-- 📖 **Személyek, dátumok, fogalmak** – az iskolai tananyag alapján
+- 📚 **Tematikus paklik** – tantárgyanként csoportosítva (történelem, stb.)
+- ❓ **Többféle kérdéstípus** – személyek, dátumok, fogalmak
 - 🏆 **XP & rangok** – Újonctól a Fővezérig
 - 🔥 **Napi sorozat** – streak rendszer a rendszeres tanulásért
-- 🎖️ **12 achievement** – kitűzők gyűjtése
+- 🎖️ **12 kitüntetés** – gyűjtögetős rendszer
 - 📱 **PWA** – telepíthető mobilra
 - 🌙 **Sötét mód**
 - 📊 **Eredmények megosztása** – egyetlen kattintással
+
+## ➕ Új pakli hozzáadása
+
+1. Hozz létre egy fájlt: `src/data/decks/<tantárgy>/<id>.js`
+2. Importáld a `src/data/decks/index.js`-ben
+
+Minden pakli egy egyszerű JS fájl, semmilyen admin felület vagy adatbázis nem kell.
 
 ## 🚀 Fejlesztés
 
@@ -23,7 +31,7 @@ npm run dev
 
 ```bash
 npm run build
-npx wrangler pages deploy dist --project-name haditerv
+npx wrangler pages deploy dist --project-name tudasproba
 ```
 
 ## 🛠️ Tech stack

@@ -22,6 +22,6 @@ jobs:
 
       - uses: cloudflare/wrangler-action@v3
         with:
-          command: pages deploy dist --project-name=haditerv
+          command: pages deploy dist --project-name=tudasproba
           apiToken: ${{ secrets.CLOUDFLARE_API_TOKEN }}
           accountId: ${{ secrets.CLOUDFLARE_ACCOUNT_ID }}

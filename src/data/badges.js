@@ -133,7 +133,8 @@ export function generateShareText(data) {
     .join(' ')
 
   return [
-    `⚔️ HADITERV – II. világháborús kvíz`,
+    `🧠 TUDÁSPRÓBA`,
+    ``,
     ``,
     `${rank.icon} Rang: ${rank.name}`,
     `🏆 Legjobb: ${data.best ?? 0}%`,
@@ -143,7 +144,8 @@ export function generateShareText(data) {
     data.bestStreak > 1 ? `🔥 Legjobb sorozat: ${data.bestStreak}` : '',
     badgeIcons ? `🎖️ Kitüntetések: ${badgeIcons}` : '',
     ``,
-    `Tudsz jobbat? Próbáld ki te is! 💪`,
+    `Tudsz jobbat? Próbáld ki te is! 🧠`,
+    `https://tudasproba.hu`,
   ]
     .filter(Boolean)
     .join('\n')
