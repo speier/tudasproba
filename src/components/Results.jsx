@@ -145,6 +145,16 @@ export default function Results() {
           Eredmények törlése
         </button>
       )}
+
+      {/* About */}
+      <div className="mt-4 border-t border-slate-200/60 pt-4 text-center dark:border-slate-700/40">
+        <p className="text-[11px] text-slate-400 dark:text-slate-500">
+          Készítette{' '}
+          <a href="https://dendora.hu" target="_blank" rel="noopener noreferrer" className="font-medium text-emerald-500 hover:underline dark:text-emerald-400">
+            dendora.hu
+          </a>
+        </p>
+      </div>
     </div>
   )
 }
