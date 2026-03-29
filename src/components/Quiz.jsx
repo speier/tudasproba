@@ -7,6 +7,10 @@ function speak(text) {
   const utterance = new SpeechSynthesisUtterance(text)
   utterance.lang = 'hu-HU'
   utterance.rate = 0.9
+  // Try to find a Hungarian voice explicitly
+  const voices = window.speechSynthesis.getVoices()
+  const huVoice = voices.find((v) => v.lang.startsWith('hu'))
+  if (huVoice) utterance.voice = huVoice
   window.speechSynthesis.speak(utterance)
 }
 
