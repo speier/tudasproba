@@ -1,0 +1,242 @@
+<!DOCTYPE html>
+<html lang="hu">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>II. világháború – Tanulólap</title>
+  <style>
+    @page {
+      margin: 1.5cm;
+      size: A4;
+    }
+    * { box-sizing: border-box; margin: 0; padding: 0; }
+    body {
+      font-family: 'Segoe UI', system-ui, -apple-system, sans-serif;
+      font-size: 11pt;
+      line-height: 1.5;
+      color: #1e293b;
+      max-width: 800px;
+      margin: 0 auto;
+      padding: 1.5cm;
+    }
+    h1 {
+      text-align: center;
+      font-size: 20pt;
+      margin-bottom: 4pt;
+      color: #0f172a;
+    }
+    .subtitle {
+      text-align: center;
+      font-size: 10pt;
+      color: #64748b;
+      margin-bottom: 20pt;
+    }
+    h2 {
+      font-size: 14pt;
+      color: #0f172a;
+      border-bottom: 2pt solid #10b981;
+      padding-bottom: 3pt;
+      margin-top: 18pt;
+      margin-bottom: 10pt;
+      page-break-after: avoid;
+    }
+    h2 .icon { margin-right: 6pt; }
+
+    /* --- Table styles --- */
+    table {
+      width: 100%;
+      border-collapse: collapse;
+      margin-bottom: 14pt;
+      page-break-inside: avoid;
+    }
+    thead th {
+      background: #f1f5f9;
+      text-align: left;
+      padding: 5pt 8pt;
+      font-size: 9pt;
+      text-transform: uppercase;
+      letter-spacing: 0.5pt;
+      color: #475569;
+      border-bottom: 1.5pt solid #cbd5e1;
+    }
+    tbody td {
+      padding: 5pt 8pt;
+      border-bottom: 0.5pt solid #e2e8f0;
+      vertical-align: top;
+    }
+    tbody tr:last-child td { border-bottom: none; }
+    tbody tr:nth-child(even) { background: #f8fafc; }
+
+    .col-prompt { width: 38%; font-weight: 600; }
+    .col-answer { width: 62%; }
+
+    /* --- Two-column layout for flashcard style --- */
+    .cards {
+      display: grid;
+      grid-template-columns: 1fr 1fr;
+      gap: 8pt;
+      margin-bottom: 14pt;
+    }
+    .card {
+      border: 1pt solid #e2e8f0;
+      border-radius: 6pt;
+      padding: 8pt 10pt;
+      page-break-inside: avoid;
+      background: #fff;
+    }
+    .card-title {
+      font-weight: 700;
+      font-size: 10pt;
+      margin-bottom: 2pt;
+      color: #0f172a;
+    }
+    .card-body {
+      font-size: 10pt;
+      color: #334155;
+    }
+
+    /* --- Print tweaks --- */
+    @media print {
+      body { padding: 0; }
+      h2 { margin-top: 14pt; }
+      .no-print { display: none !important; }
+    }
+
+    /* --- Screen-only button --- */
+    .print-btn {
+      position: fixed;
+      bottom: 20px;
+      right: 20px;
+      background: #10b981;
+      color: #fff;
+      border: none;
+      border-radius: 10px;
+      padding: 12px 24px;
+      font-size: 14pt;
+      font-weight: 600;
+      cursor: pointer;
+      box-shadow: 0 4px 12px rgba(0,0,0,0.15);
+    }
+    .print-btn:hover { background: #059669; }
+
+    .footer {
+      margin-top: 24pt;
+      text-align: center;
+      font-size: 8pt;
+      color: #94a3b8;
+    }
+  </style>
+</head>
+<body>
+
+<button class="print-btn no-print" onclick="window.print()">🖨️ Nyomtatás</button>
+
+<h1>⚔️ II. világháború</h1>
+<p class="subtitle">Tanulólap – Személyek, dátumok és fogalmak</p>
+
+<!-- =========  1) NEVEK / SZEMÉLYEK  ========= -->
+<h2><span class="icon">👤</span>1) Nevek – Személyek</h2>
+<table>
+  <thead>
+    <tr><th class="col-prompt">Név</th><th class="col-answer">Ki volt ő?</th></tr>
+  </thead>
+  <tbody>
+    <tr><td class="col-prompt">Winston Churchill</td><td>Brit miniszterelnök a háború alatt</td></tr>
+    <tr><td class="col-prompt">Franklin D. Roosevelt</td><td>Amerikai elnök a háború elején</td></tr>
+    <tr><td class="col-prompt">Harry S. Truman</td><td>Amerikai elnök a háború végén, az atombomba bevetésekor</td></tr>
+    <tr><td class="col-prompt">Szálasi Ferenc</td><td>A magyar nyilas párt vezetője</td></tr>
+    <tr><td class="col-prompt">Teleki Pál</td><td>Magyar miniszterelnök a háború előtt</td></tr>
+    <tr><td class="col-prompt">Sztójay Döme</td><td>Magyar miniszterelnök a német megszállás idején</td></tr>
+  </tbody>
+</table>
+
+<!-- =========  2) DÁTUMOK  ========= -->
+<h2><span class="icon">📅</span>2) Dátumok</h2>
+<table>
+  <thead>
+    <tr><th class="col-prompt">Dátum</th><th class="col-answer">Esemény</th></tr>
+  </thead>
+  <tbody>
+    <tr><td class="col-prompt">1938.11.02.</td><td>I. bécsi döntés</td></tr>
+    <tr><td class="col-prompt">1939.09.01.</td><td>A II. világháború kezdete</td></tr>
+    <tr><td class="col-prompt">1940.08.30.</td><td>II. bécsi döntés</td></tr>
+    <tr><td class="col-prompt">1941.06.22.</td><td>Barbarossa hadművelet</td></tr>
+    <tr><td class="col-prompt">1941.12.07.</td><td>Pearl Harbor: japán támadás az Egyesült Államok ellen</td></tr>
+    <tr><td class="col-prompt">1944.03.19.</td><td>A németek megszállják Magyarországot</td></tr>
+    <tr><td class="col-prompt">1944.06.06.</td><td>Normandiai partraszállás</td></tr>
+    <tr><td class="col-prompt">1944.10.15.</td><td>Horthy kiáltványa</td></tr>
+    <tr><td class="col-prompt">1945. április</td><td>Magyarországon véget ér a háború</td></tr>
+    <tr><td class="col-prompt">1945.05.08.</td><td>Európában véget ér a II. világháború</td></tr>
+    <tr><td class="col-prompt">1945.09.02.</td><td>Japán leteszi a fegyvert, vége a II. világháborúnak</td></tr>
+  </tbody>
+</table>
+
+<!-- =========  3) FOGALMAK  ========= -->
+<h2><span class="icon">📖</span>3) Fogalmak</h2>
+<div class="cards">
+  <div class="card">
+    <div class="card-title">A háború ürügye</div>
+    <div class="card-body">A gliwicei rádióállomás „megtámadása"</div>
+  </div>
+  <div class="card">
+    <div class="card-title">Barbarossa hadművelet</div>
+    <div class="card-body">A Szovjetunió megtámadásának terve</div>
+  </div>
+  <div class="card">
+    <div class="card-title">Teheráni konferencia</div>
+    <div class="card-body">A normandiai partraszállás megtervezése</div>
+  </div>
+  <div class="card">
+    <div class="card-title">Jaltai konferencia</div>
+    <div class="card-body">Németország négy megszállási övezetre bontása</div>
+  </div>
+  <div class="card">
+    <div class="card-title">Gettó</div>
+    <div class="card-body">Elkülönített városrész, ahol csak zsidók laktak</div>
+  </div>
+  <div class="card">
+    <div class="card-title">Deportálás</div>
+    <div class="card-body">A zsidók elszállítása, költöztetése</div>
+  </div>
+  <div class="card">
+    <div class="card-title">Koncentrációs tábor</div>
+    <div class="card-body">Kezdetben munkatábor, majd megsemmisítő tábor</div>
+  </div>
+  <div class="card">
+    <div class="card-title">Vörös Hadsereg</div>
+    <div class="card-body">A szovjet hadsereg</div>
+  </div>
+  <div class="card">
+    <div class="card-title">Nyilasok</div>
+    <div class="card-body">Szálasi Ferenc által vezetett németbarát párt</div>
+  </div>
+  <div class="card">
+    <div class="card-title">1. zsidó törvény</div>
+    <div class="card-body">Bizonyos szakmákban legfeljebb 20% lehetett zsidó</div>
+  </div>
+  <div class="card">
+    <div class="card-title">2. zsidó törvény</div>
+    <div class="card-body">Bizonyos szakmákban legfeljebb 6% lehetett zsidó</div>
+  </div>
+  <div class="card">
+    <div class="card-title">3. zsidó törvény</div>
+    <div class="card-body">Megtiltották a zsidók és nem zsidók közötti házasságot</div>
+  </div>
+  <div class="card">
+    <div class="card-title">Nürnbergi per</div>
+    <div class="card-body">A háborús bűnösök felelősségre vonása</div>
+  </div>
+  <div class="card">
+    <div class="card-title">1. bécsi döntés</div>
+    <div class="card-body">Magyarország visszakapja a Felvidéket és Kárpátalját</div>
+  </div>
+  <div class="card">
+    <div class="card-title">2. bécsi döntés</div>
+    <div class="card-body">Magyarország visszakapja Erdélyt és Székelyföldet</div>
+  </div>
+</div>
+
+<p class="footer">Tudáspróba – II. világháború tanulólap</p>
+
+</body>
+</html>
