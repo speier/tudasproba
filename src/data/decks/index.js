@@ -1,5 +1,6 @@
 import ww2 from './history/ww2.js'
 import allatrendszertan from './biology/allatrendszertan.js'
+import vizVizpart from './kornyezet/viz_vizpart.js'
 
 // All available decks. To add a new deck:
 //   1. Create src/data/decks/<subject>/<id>.js following the same shape
@@ -7,6 +8,7 @@ import allatrendszertan from './biology/allatrendszertan.js'
 export const decks = [
   ww2,
   allatrendszertan,
+  vizVizpart,
 ]
 
 export function getDeckById(id) {
