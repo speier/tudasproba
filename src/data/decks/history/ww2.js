@@ -1,5 +1,6 @@
 export default {
   id: 'ww2',
+  grade: 7,
   subject: 'history',
   subjectLabel: 'Történelem',
   subjectIcon: '📜',

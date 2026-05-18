@@ -1,5 +1,5 @@
 import { loadResults, getRank, hasPlayedToday, ACHIEVEMENTS } from '../data/badges'
-import { getDecksBySubject } from '../data/decks/index'
+import { getDecksByGrade } from '../data/decks/index'
 
 const MOTIVATIONS = [
   'Ma is légy a legjobb! 💪',
@@ -21,7 +21,7 @@ export default function Home({ navigate }) {
   const data = loadResults()
   const rank = getRank(data.best || 0)
   const played = hasPlayedToday()
-  const subjects = getDecksBySubject()
+  const grades = getDecksByGrade()
   const motivation = MOTIVATIONS[Math.floor(Math.random() * MOTIVATIONS.length)]
 
   return (
@@ -52,37 +52,47 @@ export default function Home({ navigate }) {
         </button>
       )}
 
-      {/* Deck picker — grouped by subject */}
-      {subjects.map((group) => (
-        <div key={group.subject} className="animate-slide-up flex flex-col gap-2">
-          <p className="text-xs font-bold uppercase tracking-widest text-slate-400 dark:text-slate-500">
-            {group.icon} {group.label}
-          </p>
-          {group.decks.map((deck) => {
-            const inProgress = getDeckInProgress(deck.id)
-            return (
-              <button
-                key={deck.id}
-                onClick={() => navigate('quiz', deck)}
-                className="flex w-full items-center gap-4 rounded-2xl bg-white p-4 shadow-md transition-transform hover:scale-[1.01] active:scale-[0.99] dark:bg-slate-800"
-              >
-                <span className="text-4xl">{deck.icon}</span>
-                <div className="flex-1 text-left">
-                  <p className="font-bold">{deck.title}</p>
-                  <p className="text-xs text-slate-500 dark:text-slate-400">{deck.description}</p>
-                  <p className="mt-1 text-xs text-slate-400 dark:text-slate-500">{deck.items.length} kérdés</p>
-                </div>
-                <div className="flex flex-col items-end gap-1.5">
-                  {inProgress && (
-                    <span className="rounded-full bg-amber-100 px-2 py-0.5 text-xs font-bold text-amber-700 dark:bg-amber-900/40 dark:text-amber-300">
-                      folytatás
-                    </span>
-                  )}
-                  <span className="text-slate-300 dark:text-slate-600">→</span>
-                </div>
-              </button>
-            )
-          })}
+      {/* Deck picker — grouped by grade, then by subject */}
+      {grades.map((gradeGroup) => (
+        <div key={gradeGroup.grade} className="animate-slide-up flex flex-col gap-3">
+          <div className="flex items-center gap-2">
+            <span className="rounded-full bg-gradient-to-r from-emerald-500 to-blue-500 px-3 py-1 text-xs font-bold text-white shadow-sm">
+              {gradeGroup.label}
+            </span>
+            <div className="h-px flex-1 bg-slate-200 dark:bg-slate-700" />
+          </div>
+          {gradeGroup.subjects.map((group) => (
+            <div key={group.subject} className="flex flex-col gap-2">
+              <p className="text-xs font-bold uppercase tracking-widest text-slate-400 dark:text-slate-500">
+                {group.icon} {group.label}
+              </p>
+              {group.decks.map((deck) => {
+                const inProgress = getDeckInProgress(deck.id)
+                return (
+                  <button
+                    key={deck.id}
+                    onClick={() => navigate('quiz', deck)}
+                    className="flex w-full items-center gap-4 rounded-2xl bg-white p-4 shadow-md transition-transform hover:scale-[1.01] active:scale-[0.99] dark:bg-slate-800"
+                  >
+                    <span className="text-4xl">{deck.icon}</span>
+                    <div className="flex-1 text-left">
+                      <p className="font-bold">{deck.title}</p>
+                      <p className="text-xs text-slate-500 dark:text-slate-400">{deck.description}</p>
+                      <p className="mt-1 text-xs text-slate-400 dark:text-slate-500">{deck.items.length} kérdés</p>
+                    </div>
+                    <div className="flex flex-col items-end gap-1.5">
+                      {inProgress && (
+                        <span className="rounded-full bg-amber-100 px-2 py-0.5 text-xs font-bold text-amber-700 dark:bg-amber-900/40 dark:text-amber-300">
+                          folytatás
+                        </span>
+                      )}
+                      <span className="text-slate-300 dark:text-slate-600">→</span>
+                    </div>
+                  </button>
+                )
+              })}
+            </div>
+          ))}
         </div>
       ))}
 

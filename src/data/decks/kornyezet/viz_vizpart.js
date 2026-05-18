@@ -1,10 +1,11 @@
 export default {
   id: 'viz-vizpart',
+  grade: 4,
   subject: 'kornyezet',
   subjectLabel: 'Környezetismeret',
   subjectIcon: '🌿',
   title: 'Élet a vízben, vízparton',
-  description: 'A vizek és vízpartok élővilága – növények, állatok, fogalmak (4. osztály)',
+  description: 'A vizek és vízpartok élővilága – növények, állatok, fogalmak',
   icon: '🦆',
   categories: {
     fak:       { label: 'Fák a vízparton',         icon: '🌳' },

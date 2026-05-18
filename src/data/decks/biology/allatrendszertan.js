@@ -1,5 +1,6 @@
 export default {
   id: 'allatrendszertan',
+  grade: 7,
   subject: 'biology',
   subjectLabel: 'Biológia',
   subjectIcon: '🧬',
