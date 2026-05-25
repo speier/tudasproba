@@ -1,5 +1,6 @@
 import ww2 from './history/ww2.js'
 import kommunistaHatalomatvetel from './history/kommunista_hatalomatvetel.js'
+import hideghaboru from './history/hideghaboru.js'
 import allatrendszertan from './biology/allatrendszertan.js'
 import vizVizpart from './kornyezet/viz_vizpart.js'
 
@@ -9,6 +10,7 @@ import vizVizpart from './kornyezet/viz_vizpart.js'
 export const decks = [
   ww2,
   kommunistaHatalomatvetel,
+  hideghaboru,
   allatrendszertan,
   vizVizpart,
 ]
