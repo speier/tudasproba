@@ -1,3 +1,4 @@
+import korulottemATortenelem from './history/korulottem_a_tortenelem.js'
 import ww2 from './history/ww2.js'
 import kommunistaHatalomatvetel from './history/kommunista_hatalomatvetel.js'
 import hideghaboru from './history/hideghaboru.js'
@@ -8,6 +9,7 @@ import vizVizpart from './kornyezet/viz_vizpart.js'
 //   1. Create src/data/decks/<subject>/<id>.js following the same shape
 //   2. Import it here and add it to this array
 export const decks = [
+  korulottemATortenelem,
   ww2,
   kommunistaHatalomatvetel,
   hideghaboru,
