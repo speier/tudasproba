@@ -2,6 +2,7 @@ import korulottemATortenelem from './history/korulottem_a_tortenelem.js'
 import ww2 from './history/ww2.js'
 import kommunistaHatalomatvetel from './history/kommunista_hatalomatvetel.js'
 import hideghaboru from './history/hideghaboru.js'
+import forradalom1956 from './history/forradalom_1956.js'
 import allatrendszertan from './biology/allatrendszertan.js'
 import vizVizpart from './kornyezet/viz_vizpart.js'
 
@@ -13,6 +14,7 @@ export const decks = [
   ww2,
   kommunistaHatalomatvetel,
   hideghaboru,
+  forradalom1956,
   allatrendszertan,
   vizVizpart,
 ]
