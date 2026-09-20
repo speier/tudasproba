@@ -5,6 +5,7 @@ import hideghaboru from './history/hideghaboru.js'
 import forradalom1956 from './history/forradalom_1956.js'
 import allatrendszertan from './biology/allatrendszertan.js'
 import vizVizpart from './kornyezet/viz_vizpart.js'
+import oszovetseg from './hittan/oszovetseg.js'
 
 // All available decks. To add a new deck:
 //   1. Create src/data/decks/<subject>/<id>.js following the same shape
@@ -17,6 +18,7 @@ export const decks = [
   forradalom1956,
   allatrendszertan,
   vizVizpart,
+  oszovetseg,
 ]
 
 export function getDeckById(id) {
