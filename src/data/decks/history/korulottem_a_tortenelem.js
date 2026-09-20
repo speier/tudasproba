@@ -12,6 +12,7 @@ export default {
     forras:    { label: 'Történelmi források',  icon: '📜' },
     kutato:    { label: 'Ki mit kutat?',         icon: '🔍' },
     mu:        { label: 'Történeti művek',       icon: '📖' },
+    regesz:    { label: 'A régész munkája',      icon: '⛏️' },
   },
   items: [
     // ── Személyes történelem ────────────────────────────────────────
@@ -46,5 +47,17 @@ export default {
     { id: 'm10', prompt: 'Mi a témája a Gesta Hungarorumnak?',                                 answer: 'A magyar honfoglalás',                                                    category: 'mu' },
     { id: 'm11', prompt: 'Mi a kódex?',                                                        answer: 'Kézzel írott középkori könyv',                                            category: 'mu' },
     { id: 'm12', prompt: 'Mire írták a középkori kódexeket?',                                  answer: 'Pergamenre',                                                              category: 'mu' },
+
+    // ── A régész munkája ──────────────────────────────────────────
+    { id: 'r1', prompt: 'Mit igényel a régész munkája?',                                       answer: 'Türelmet és pontosságot',                                                 category: 'regesz' },
+    { id: 'r2', prompt: 'Mi a régész munkájának első lépése?',                                 answer: 'Az ásatási terület kijelölése',                                           category: 'regesz' },
+    { id: 'r3', prompt: 'Mi történik az ásatási terület kijelölése után?',                     answer: 'A földkitermelés',                                                        category: 'regesz' },
+    { id: 'r4', prompt: 'Mit csinálnak a leletekkel a földkitermelés után?',                   answer: 'Megtisztítják őket',                                                      category: 'regesz' },
+    { id: 'r5', prompt: 'Mi történik a leletek megtisztítása után?',                           answer: 'Helyreállítják őket és meghatározzák a korukat',                          category: 'regesz' },
+    { id: 'r6', prompt: 'Mi a régész munkájának utolsó lépése?',                               answer: 'A leletek kiállítása',                                                    category: 'regesz' },
+    { id: 'r7', prompt: 'Sorold fel a régész munkájának lépéseit!',                            answer: 'Terület kijelölése, földkitermelés, leletek megtisztítása, helyreállítása és kormeghatározása, kiállítása', category: 'regesz' },
+    { id: 'r8', prompt: 'Milyen eszközöket használ a régész?',                                 answer: 'Ásó, kézi ásó, kefe, ecset',                                              category: 'regesz' },
+    { id: 'r9', prompt: 'Mire használja a régész az ásót és a kézi ásót?',                     answer: 'A földkitermeléshez',                                                     category: 'regesz' },
+    { id: 'r10', prompt: 'Mire használja a régész a kefét és az ecsetet?',                     answer: 'A leletek megtisztításához',                                              category: 'regesz' },
   ],
 }
