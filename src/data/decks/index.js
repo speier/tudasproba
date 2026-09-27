@@ -7,6 +7,7 @@ import allatrendszertan from './biology/allatrendszertan.js'
 import vizVizpart from './kornyezet/viz_vizpart.js'
 import oszovetseg from './hittan/oszovetseg.js'
 import zoldsegek from './termeszetismeret/zoldsegek.js'
+import gyumolcsoskert from './termeszetismeret/gyumolcsoskert.js'
 
 // All available decks. To add a new deck:
 //   1. Create src/data/decks/<subject>/<id>.js following the same shape
@@ -21,6 +22,7 @@ export const decks = [
   vizVizpart,
   oszovetseg,
   zoldsegek,
+  gyumolcsoskert,
 ]
 
 export function getDeckById(id) {
