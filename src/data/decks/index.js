@@ -1,4 +1,6 @@
 import korulottemATortenelem from './history/korulottem_a_tortenelem.js'
+import magyarAllamJelkepei from './history/magyar_allam_jelkepei.js'
+import idoszamitasKorszakok from './history/idoszamitas_korszakok.js'
 import ww2 from './history/ww2.js'
 import kommunistaHatalomatvetel from './history/kommunista_hatalomatvetel.js'
 import hideghaboru from './history/hideghaboru.js'
@@ -14,6 +16,8 @@ import gyumolcsoskert from './termeszetismeret/gyumolcsoskert.js'
 //   2. Import it here and add it to this array
 export const decks = [
   korulottemATortenelem,
+  magyarAllamJelkepei,
+  idoszamitasKorszakok,
   ww2,
   kommunistaHatalomatvetel,
   hideghaboru,

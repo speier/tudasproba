@@ -19,8 +19,9 @@ export default {
     { id: 'sz1', prompt: 'Honnan ismerhetjük meg a történelmet a tankönyveken kívül?',        answer: 'Abból, ami velünk és körülöttünk történik – ez is része a történelemnek', category: 'szemelyes' },
     { id: 'sz2', prompt: 'Mit nevezünk személyes történelemnek?',                              answer: 'A saját hétköznapi életünket és a velünk történt eseményeket',            category: 'szemelyes' },
     { id: 'sz3', prompt: 'Kiktől hallhatunk átélt élményeket, elbeszéléseket a múltról?',      answer: 'Szüleinktől és nagyszüleinktől',                                          category: 'szemelyes' },
-    { id: 'sz4', prompt: 'Sorolj fel példákat a személyes történelem forrásaira!',             answer: 'Tárgyak, történetek, iratok, festmények, könyvek, naplók, fényképek',     category: 'szemelyes' },
+    { id: 'sz4', prompt: 'Sorolj fel példákat a személyes történelem forrásaira!',             answer: 'Tárgyak, történetek, bútorok, festmények, könyvek, naplók, fényképek',    category: 'szemelyes' },
     { id: 'sz5', prompt: 'Milyen épített emlékek őrzik a személyes történelmet?',              answer: 'Szobrok, épületek',                                                       category: 'szemelyes' },
+    { id: 'sz6', prompt: 'Fejezd be a mondást: „A történelem az élet…”',                       answer: '…tanító mestere',                                                         category: 'szemelyes' },
 
     // ── Történelmi források ──────────────────────────────────────────
     { id: 'f1', prompt: 'Mire szolgálnak a történelmi források?',                             answer: 'Segítik a múlt megismerését, ismereteket hordoznak',                     category: 'forras' },
@@ -33,6 +34,7 @@ export default {
     { id: 'k1', prompt: 'Milyen forrásokból merít a történész?',                               answer: 'Írott forrásokból',                                                       category: 'kutato' },
     { id: 'k2', prompt: 'Mit vizsgál a nyelvész a történelem megismeréséhez?',                 answer: 'A nyelv változásait',                                                     category: 'kutato' },
     { id: 'k3', prompt: 'Mivel foglalkozik a néprajzkutató?',                                  answer: 'A szokások, hagyományok vizsgálatával',                                   category: 'kutato' },
+    { id: 'k4', prompt: 'Milyen forrásokkal dolgozik a régész?',                               answer: 'Tárgyi forrásokkal',                                                      category: 'kutato' },
 
     // ── Történeti művek: krónika, gesta, kódex ───────────────────────
     { id: 'm1',  prompt: 'Mi a krónika?',                                                      answer: 'Az eseményeket időrendben elbeszélő mű',                                  category: 'mu' },
