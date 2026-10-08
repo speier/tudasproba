@@ -89,6 +89,9 @@ export default {
     { id: 's6', prompt: 'Mi a tizenhatos számrendszer másik neve?',                     answer: 'Hexadecimális',                  category: 'szamrend' },
     { id: 's7', prompt: 'Hány bites rendszerrel dolgoznak a mai számítógépek?',         answer: '32 bites (x86) vagy 64 bites',   category: 'szamrend',
       distractors: ['8 bites', '10 bites', '1000 bites'] },
+    { id: 's8', prompt: 'Mit jelent az alsó kis 2-es a 110₂ jelölésben?',               answer: 'Hogy a szám kettes számrendszerben van', category: 'szamrend',
+      distractors: ['Hogy négyzetre kell emelni', 'Hogy 2-vel kell szorozni', 'Hogy a szám 2 számjegyű'],
+      explain: 'Az alsó index a számrendszert jelöli: 110₂ = kettes számrendszerbeli 110 = 6. A felső 2-es (110²) a négyzetre emelés lenne!' },
 
     // ── Tizenhatos számjegyek ───────────────────────────────────────
     { id: 'h1', prompt: 'Mennyit ér az A számjegy a tizenhatos számrendszerben?',       answer: '10',                             category: 'hexa' },
