@@ -23,8 +23,8 @@ export function saveMissed(deckId, missedIds) {
 }
 
 // Build quiz questions from any deck.
-// Each deck item: { id, prompt, answer, category? }
-// Wrong options are drawn from the same category first, then supplemented from the full pool.
+// Each deck item: { id, prompt, answer, category?, distractors?, explain? }
+// Wrong options come from item.distractors if given, else the same category, then the full pool.
 // Missed questions are prioritized — they appear first, then remaining slots are filled randomly.
 export function generateQuizQuestions(deck, count = 10) {
   const { items } = deck
@@ -40,7 +40,8 @@ export function generateQuizQuestions(deck, count = 10) {
       label: item.prompt,
       image: item.image || null,
       correctAnswer: item.answer,
-      explanation: `${item.prompt} – ${item.answer}.`,
+      explanation: item.explain || `${item.prompt} – ${item.answer}.`,
+      distractors: item.distractors || null,
       pool: sameCategory.map((o) => o.answer),
       fullPool: items.map((o) => o.answer),
     }
@@ -75,7 +76,7 @@ export function generateQuizQuestions(deck, count = 10) {
   }
 
   return shuffle(selected).map((q) => {
-    const wrongFromCategory = q.pool.filter((a) => a !== q.correctAnswer)
+    const wrongFromCategory = q.distractors || q.pool.filter((a) => a !== q.correctAnswer)
     let wrongPicks = shuffle(wrongFromCategory).slice(0, 3)
     if (wrongPicks.length < 3) {
       const supplement = shuffle(

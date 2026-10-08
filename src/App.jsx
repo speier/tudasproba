@@ -2,6 +2,7 @@ import { useState, useEffect } from 'react'
 import Home from './components/Home'
 import Quiz from './components/Quiz'
 import Results from './components/Results'
+import Worksheet from './components/Worksheet'
 import { decks } from './data/decks/index'
 
 const TABS = [
@@ -32,7 +33,7 @@ export default function App() {
   return (
     <div className="flex min-h-screen flex-col bg-slate-50 text-slate-900 transition-colors dark:bg-slate-900 dark:text-slate-100">
       {/* Minimal header */}
-      <header className="sticky top-0 z-10 border-b border-slate-200/60 bg-white/80 backdrop-blur dark:border-slate-700/60 dark:bg-slate-800/80">
+      <header className="sticky top-0 z-10 border-b border-slate-200/60 bg-white/80 backdrop-blur print:hidden dark:border-slate-700/60 dark:bg-slate-800/80">
         <div className="mx-auto flex max-w-xl items-center justify-between px-4 py-2.5">
         <div className="flex items-center gap-2">
           <button onClick={() => setPage('home')} className="flex items-center gap-1.5 text-lg font-bold tracking-tight">
@@ -50,14 +51,15 @@ export default function App() {
       </header>
 
       {/* Main content - extra padding bottom for tab bar */}
-      <main className="mx-auto w-full max-w-xl flex-1 px-4 py-5 pb-24">
+      <main className="mx-auto w-full max-w-xl flex-1 px-4 py-5 pb-24 print:max-w-none print:p-0">
         {page === 'home' && <Home navigate={handleNavigate} />}
         {page === 'quiz' && <Quiz deck={selectedDeck} onBack={() => setPage('home')} />}
+        {page === 'worksheet' && <Worksheet deck={selectedDeck} onBack={() => setPage('home')} />}
         {page === 'profile' && <Results />}
       </main>
 
       {/* Bottom tab bar */}
-      <nav className="fixed bottom-0 left-0 right-0 z-20 border-t border-slate-200/60 bg-white/90 backdrop-blur-lg dark:border-slate-700/60 dark:bg-slate-800/90" style={{ paddingBottom: 'env(safe-area-inset-bottom)' }}>
+      <nav className="fixed bottom-0 left-0 right-0 z-20 border-t border-slate-200/60 bg-white/90 backdrop-blur-lg print:hidden dark:border-slate-700/60 dark:bg-slate-800/90" style={{ paddingBottom: 'env(safe-area-inset-bottom)' }}>
         <div className="mx-auto flex max-w-xl">
           {TABS.map((tab) => {
             const active = page === tab.id

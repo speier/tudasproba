@@ -14,6 +14,15 @@ function speak(text) {
   window.speechSynthesis.speak(utterance)
 }
 
+function buildQuestions(deck) {
+  return deck.generate ? deck.generate() : generateQuizQuestions(deck, deck.items.length)
+}
+
+// Ignore spaces and leading zeros, so 00001101 counts as 1101.
+function normalizeAnswer(value) {
+  return value.replace(/\s/g, '').replace(/^0+(?=\d)/, '')
+}
+
 function loadProgress(key) {
   try {
     const raw = localStorage.getItem(key)
@@ -71,9 +80,10 @@ export default function Quiz({ deck, onBack }) {
       return { ...saved, answerAnim: null }
     }
     clearProgress(STORAGE_KEY)
-    const questions = generateQuizQuestions(deck, deck.items.length)
+    const questions = buildQuestions(deck)
     return { questions, current: 0, selected: null, score: 0, finished: false, streak: 0, answerAnim: null, wrongIds: [] }
   })
+  const [typed, setTyped] = useState('')
   const [newBadges, setNewBadges] = useState([])
   const [showConfetti, setShowConfetti] = useState(false)
   const [earnedXp, setEarnedXp] = useState(0)
@@ -92,6 +102,7 @@ export default function Quiz({ deck, onBack }) {
   // Scroll question into view on change
   useEffect(() => {
     questionRef.current?.scrollIntoView({ behavior: 'smooth', block: 'start' })
+    setTyped('')
   }, [current])
 
   // Dev mode: arrow keys to cycle through questions
@@ -128,9 +139,13 @@ export default function Quiz({ deck, onBack }) {
     }))
   }
 
+  const isWrong = selected !== null && selected !== q.correctAnswer
+  // Wrong answers with a worked solution wait for a tap so the steps can be read.
+  const showSteps = isWrong && q.steps
+
   // Auto-advance: faster for correct (1.2s), slower for wrong (2.5s) to read explanation
   useEffect(() => {
-    if (selected === null) return
+    if (selected === null || showSteps) return
     const delay = selected === q.correctAnswer ? 1200 : 2500
     timerRef.current = setTimeout(handleNext, delay)
     return () => clearTimeout(timerRef.current)
@@ -167,7 +182,7 @@ export default function Quiz({ deck, onBack }) {
 
   const handleRestart = () => {
     clearProgress(STORAGE_KEY)
-    const questions = generateQuizQuestions(deck, deck.items.length)
+    const questions = buildQuestions(deck)
     const fresh = { questions, current: 0, selected: null, score: 0, finished: false, streak: 0, answerAnim: null, wrongIds: [] }
     setNewBadges([])
     setShowConfetti(false)
@@ -314,7 +329,34 @@ export default function Quiz({ deck, onBack }) {
         </div>
       </div>
 
-      {/* Options */}
+      {q.input ? (
+        <form
+          key={current}
+          onSubmit={(e) => {
+            e.preventDefault()
+            const answer = normalizeAnswer(typed)
+            if (answer) handleSelect(answer)
+          }}
+          className="flex gap-3"
+        >
+          <input
+            value={typed}
+            onChange={(e) => setTyped(e.target.value)}
+            inputMode="numeric"
+            autoComplete="off"
+            autoFocus
+            placeholder="Válasz…"
+            className="min-w-0 flex-1 rounded-xl border-2 border-slate-200 bg-white p-4 font-mono text-2xl tracking-widest shadow-sm outline-none focus:border-emerald-500 dark:border-slate-700 dark:bg-slate-800"
+          />
+          <button
+            type="submit"
+            disabled={!normalizeAnswer(typed)}
+            className="rounded-xl bg-emerald-600 px-5 font-semibold text-white shadow-md transition-transform hover:bg-emerald-700 active:scale-[0.98] disabled:opacity-40"
+          >
+            Kész
+          </button>
+        </form>
+      ) : (
       <div className="flex flex-col gap-3">
         {q.options.map((option) => {
           let bg = 'bg-white dark:bg-slate-800 hover:bg-slate-50 dark:hover:bg-slate-750'
@@ -345,6 +387,7 @@ export default function Quiz({ deck, onBack }) {
           )
         })}
       </div>
+      )}
 
       </div>{/* end dimmed wrapper */}
 
@@ -367,8 +410,21 @@ export default function Quiz({ deck, onBack }) {
                 <span className="animate-float-up text-sm font-bold text-emerald-600 dark:text-emerald-400">+10 XP ⚡</span>
               )}
             </div>
+            {isWrong && q.input && (
+              <p className="mt-2 font-mono text-sm">
+                Te válaszod: <s>{selected}</s> · Helyes: <b>{q.correctAnswer}</b>
+              </p>
+            )}
             <p className="mt-2 text-sm">{q.explanation}</p>
+            {showSteps && (
+              <div className="mt-3 rounded-lg bg-white/70 p-3 font-mono text-sm leading-relaxed text-slate-800 dark:bg-black/30 dark:text-slate-100">
+                {q.steps.map((line, i) => (
+                  <p key={i} className={i === q.steps.length - 1 ? 'mt-1 font-bold' : ''}>{line}</p>
+                ))}
+              </div>
+            )}
             {/* Countdown bar */}
+            {!showSteps && (
             <div className="mt-4 h-1 w-full overflow-hidden rounded-full bg-white/50 dark:bg-black/20">
               <div
                 className={`countdown-bar h-full rounded-full ${
@@ -377,6 +433,7 @@ export default function Quiz({ deck, onBack }) {
                 style={{ animationDuration: selected === q.correctAnswer ? '1.2s' : '2.5s' }}
               />
             </div>
+            )}
             <button
               onClick={handleNext}
               className="mt-3 w-full py-2 text-center text-sm opacity-70 transition-opacity hover:opacity-100"

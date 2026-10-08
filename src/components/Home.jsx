@@ -69,8 +69,8 @@ export default function Home({ navigate }) {
               {group.decks.map((deck) => {
                 const inProgress = getDeckInProgress(deck.id)
                 return (
+                  <div key={deck.id} className="flex flex-col gap-1.5">
                   <button
-                    key={deck.id}
                     onClick={() => navigate('quiz', deck)}
                     className="flex w-full items-center gap-4 rounded-2xl bg-white p-4 shadow-md transition-transform hover:scale-[1.01] active:scale-[0.99] dark:bg-slate-800"
                   >
@@ -78,7 +78,7 @@ export default function Home({ navigate }) {
                     <div className="flex-1 text-left">
                       <p className="font-bold">{deck.title}</p>
                       <p className="text-xs text-slate-500 dark:text-slate-400">{deck.description}</p>
-                      <p className="mt-1 text-xs text-slate-400 dark:text-slate-500">{deck.items.length} kérdés</p>
+                      <p className="mt-1 text-xs text-slate-400 dark:text-slate-500">{deck.generate ? 'mindig új feladatok' : `${deck.items.length} kérdés`}</p>
                     </div>
                     <div className="flex flex-col items-end gap-1.5">
                       {inProgress && (
@@ -89,6 +89,15 @@ export default function Home({ navigate }) {
                       <span className="text-slate-300 dark:text-slate-600">→</span>
                     </div>
                   </button>
+                  {deck.generate && (
+                    <button
+                      onClick={() => navigate('worksheet', deck)}
+                      className="self-end rounded-lg px-3 py-1 text-sm font-medium text-emerald-700 hover:bg-emerald-50 dark:text-emerald-400 dark:hover:bg-emerald-900/30"
+                    >
+                      🖨️ Nyomtatható gyakorlólap
+                    </button>
+                  )}
+                  </div>
                 )
               })}
             </div>
