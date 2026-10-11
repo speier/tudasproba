@@ -8,6 +8,7 @@ import forradalom1956 from './history/forradalom_1956.js'
 import allatrendszertan from './biology/allatrendszertan.js'
 import vizVizpart from './kornyezet/viz_vizpart.js'
 import oszovetseg from './hittan/oszovetseg.js'
+import viragTermes from './termeszetismeret/virag_termes.js'
 import zoldsegek from './termeszetismeret/zoldsegek.js'
 import gyumolcsoskert from './termeszetismeret/gyumolcsoskert.js'
 import adatokMertekegysegek from './informatika/adatok_mertekegysegek.js'
@@ -27,6 +28,7 @@ export const decks = [
   allatrendszertan,
   vizVizpart,
   oszovetseg,
+  viragTermes,
   zoldsegek,
   gyumolcsoskert,
   adatokMertekegysegek,
