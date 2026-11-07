@@ -67,5 +67,9 @@ export default {
       distractors: ['Nagy Imre', 'Kádár János', 'Göncz Árpád'] },
     { id: 'i7', prompt: 'Ki látható a képen?', answer: 'Orbán Viktor', image: '/images/kadar/orban_viktor.jpg', category: 'image',
       distractors: ['Gyurcsány Ferenc', 'Antall József', 'Boross Péter'] },
+    { id: 'i8', prompt: 'Ki látható a képen?', answer: 'Horn Gyula', image: '/images/kadar/horn_gyula.jpg', category: 'image',
+      distractors: ['Antall József', 'Boross Péter', 'Medgyessy Péter'] },
+    { id: 'i9', prompt: 'Ki látható a képen?', answer: 'Medgyessy Péter', image: '/images/kadar/medgyessy_peter.jpg', category: 'image',
+      distractors: ['Horn Gyula', 'Gyurcsány Ferenc', 'Orbán Viktor'] },
   ],
 }
