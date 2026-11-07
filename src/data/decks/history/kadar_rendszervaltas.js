@@ -4,16 +4,14 @@ export default {
   subject: 'history',
   subjectLabel: 'Történelem',
   subjectIcon: '📜',
-  title: 'Kádár-kor, rendszerváltás, EU-csatlakozás',
-  description: 'Ismétlés: 1953-tól 2004-ig – dátumok, személyek és fogalmak a Kádár-korról, a rendszerváltásról és a harmadik köztársaságról',
+  title: 'Kádár-kor és rendszerváltás: dátumok, személyek',
+  description: 'Ismétlés: 1953-tól 2004-ig – a fontos dátumok és szereplők',
   icon: '🔄',
   categories: {
     date:    { label: 'Dátum',   icon: '📅' },
     person:  { label: 'Személy', icon: '👤' },
-    concept: { label: 'Fogalom', icon: '📖' },
   },
   items: [
-    // Dátumok
     { id: 'd1',  prompt: '1953',               answer: 'Sztálin halála; a Rákosi-diktatúra meggyengül, Nagy Imre lesz a kormányfő', category: 'date' },
     { id: 'd2',  prompt: '1955',               answer: 'Az NSZK belép a NATO-ba, erre válaszul létrejön a Varsói Szerződés', category: 'date' },
     { id: 'd3',  prompt: '1956. október 23.',  answer: 'Békés tüntetés, kitör a forradalom', category: 'date' },
@@ -28,8 +26,6 @@ export default {
     { id: 'd12', prompt: '1991',               answer: 'A szovjet katonák kivonulnak Magyarországról', category: 'date' },
     { id: 'd13', prompt: '1999',               answer: 'Magyarország a NATO tagja lesz', category: 'date' },
     { id: 'd14', prompt: '2004',               answer: 'Magyarország az Európai Unió tagja lesz', category: 'date' },
-
-    // Személyek
     { id: 'p1',  prompt: 'Nagy Imre',        answer: 'A forradalom alatt a miniszterelnök', category: 'person' },
     { id: 'p2',  prompt: 'Gerő Ernő',        answer: 'Rákosi után pártfőtitkár', category: 'person' },
     { id: 'p3',  prompt: 'Kádár János',      answer: 'Az 1956-os forradalom után pártfőtitkár', category: 'person' },
@@ -46,28 +42,5 @@ export default {
     { id: 'p14', prompt: 'Boross Péter',     answer: 'Antall József utódja a miniszterelnöki székben', category: 'person' },
     { id: 'p15', prompt: 'Bokros Lajos',     answer: 'Pénzügyminiszter, megszorításokat vezetett be (Bokros-csomag)', category: 'person' },
     { id: 'p16', prompt: 'Gyurcsány Ferenc', answer: 'MSZP-s miniszterelnök, az őszödi beszéd mondója', category: 'person' },
-
-    // Fogalmak
-    { id: 'c1',  prompt: '16 pont',                 answer: 'Az egyetemisták követelései 1956-ban', category: 'concept' },
-    { id: 'c2',  prompt: 'ÁVH',                     answer: 'Államvédelmi Hatóság – a politikai rendőrség', category: 'concept' },
-    { id: 'c3',  prompt: 'MEFESZ',                  answer: 'Egyetemisták szervezete a forradalom előtt', category: 'concept' },
-    { id: 'c4',  prompt: 'Molotov-koktél',          answer: 'Gyúlékony anyagból álló fegyver tankok ellen', category: 'concept' },
-    { id: 'c5',  prompt: 'Munkásőrség',             answer: 'A kommunisták fegyveres ereje', category: 'concept' },
-    { id: 'c6',  prompt: 'Gulyáskommunizmus',       answer: 'A Kádár-rendszer idején a jó életszínvonal', category: 'concept' },
-    { id: 'c7',  prompt: 'Három T',                 answer: 'A kultúra területén a tiltás, a tűrés és a támogatás', category: 'concept' },
-    { id: 'c8',  prompt: 'Háztáji gazdaság',        answer: 'A TSZ osztott földet a tagjainak művelésre', category: 'concept' },
-    { id: 'c9',  prompt: 'Hiánygazdaság',           answer: 'Amikor a kínálat nem fedezi a keresletet', category: 'concept' },
-    { id: 'c10', prompt: 'KISZ',                    answer: 'Kommunista Ifjúsági Szövetség', category: 'concept' },
-    { id: 'c11', prompt: 'Második gazdaság',        answer: 'Mellékállás a főállás mellett', category: 'concept' },
-    { id: 'c12', prompt: 'Maszek',                  answer: 'Akinek egy második állása is volt', category: 'concept' },
-    { id: 'c13', prompt: 'Adósságcsapda',           answer: 'A tartozást újabb hitelből akarja kifizetni', category: 'concept' },
-    { id: 'c14', prompt: 'NATO',                    answer: 'Európa (nyugati) katonai szervezete', category: 'concept' },
-    { id: 'c15', prompt: 'Varsói Szerződés',        answer: 'Kelet-európai katonai szövetség', category: 'concept' },
-    { id: 'c16', prompt: 'Szolidaritás',            answer: 'Lengyel szakszervezet', category: 'concept' },
-    { id: 'c17', prompt: 'Népi-nemzeti ellenzék',   answer: 'A határon túli magyarokat támogatja', category: 'concept' },
-    { id: 'c18', prompt: 'Ellenzéki kerekasztal',   answer: 'Az ellenzéki pártok együttműködése', category: 'concept' },
-    { id: 'c19', prompt: 'Nemzeti kerekasztal',     answer: 'A pártok megbeszélik az első szabad választásokat', category: 'concept' },
-    { id: 'c20', prompt: 'Páneurópai piknik',       answer: 'Egy napra megnyitják az osztrák–magyar határt (1989)', category: 'concept' },
-    { id: 'c21', prompt: 'Privatizáció',            answer: 'Állami vállalatok magánkézbe adása', category: 'concept' },
   ],
 }

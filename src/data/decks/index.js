@@ -6,6 +6,7 @@ import kommunistaHatalomatvetel from './history/kommunista_hatalomatvetel.js'
 import hideghaboru from './history/hideghaboru.js'
 import forradalom1956 from './history/forradalom_1956.js'
 import kadarRendszervaltas from './history/kadar_rendszervaltas.js'
+import kadarFogalmak from './history/kadar_rendszervaltas_fogalmak.js'
 import allatrendszertan from './biology/allatrendszertan.js'
 import vizVizpart from './kornyezet/viz_vizpart.js'
 import oszovetseg from './hittan/oszovetseg.js'
@@ -28,6 +29,7 @@ export const decks = [
   hideghaboru,
   forradalom1956,
   kadarRendszervaltas,
+  kadarFogalmak,
   allatrendszertan,
   vizVizpart,
   oszovetseg,
