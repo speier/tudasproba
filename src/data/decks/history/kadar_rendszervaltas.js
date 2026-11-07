@@ -11,6 +11,7 @@ export default {
     date:    { label: 'Dátum',   icon: '📅' },
     person:  { label: 'Személy', icon: '👤' },
     concept: { label: 'Fogalom', icon: '📖' },
+    image:   { label: 'Képfelismerés', icon: '🖼️' },
   },
   items: [
     { id: 'd1',  prompt: '1953',               answer: 'Sztálin halála; a Rákosi-diktatúra meggyengül, Nagy Imre lesz a kormányfő', category: 'date' },
@@ -50,5 +51,19 @@ export default {
     { id: 'c19', prompt: 'Nemzeti kerekasztal',     answer: 'A pártok megbeszélik az első szabad választásokat', category: 'concept' },
     { id: 'c20', prompt: 'Páneurópai piknik',       answer: 'Egy napra megnyitják az osztrák–magyar határt (1989)', category: 'concept' },
     { id: 'c21', prompt: 'Privatizáció',            answer: 'Állami vállalatok magánkézbe adása', category: 'concept' },
+
+    // Képek
+    { id: 'i1', prompt: 'Ki látható a képen?', answer: 'Nagy Imre', image: '/images/kadar/nagy_imre.jpg', category: 'image',
+      distractors: ['Kádár János', 'Göncz Árpád', 'Antall József'] },
+    { id: 'i2', prompt: 'Ki látható a képen?', answer: 'Kádár János', image: '/images/kadar/kadar_janos.jpg', category: 'image',
+      distractors: ['Nagy Imre', 'Göncz Árpád', 'Antall József'] },
+    { id: 'i3', prompt: 'Ki látható a képen?', answer: 'Göncz Árpád', image: '/images/kadar/goncz_arpad.jpg', category: 'image',
+      distractors: ['Nagy Imre', 'Kádár János', 'Antall József'] },
+    { id: 'i4', prompt: 'Ki látható a képen?', answer: 'Antall József', image: '/images/kadar/antall_jozsef.jpg', category: 'image',
+      distractors: ['Nagy Imre', 'Kádár János', 'Göncz Árpád'] },
+    { id: 'i5', prompt: 'Ki látható a képen?', answer: 'Boross Péter', image: '/images/kadar/boross_peter.jpg', category: 'image',
+      distractors: ['Nagy Imre', 'Kádár János', 'Göncz Árpád'] },
+    { id: 'i6', prompt: 'Ki látható a képen?', answer: 'Gyurcsány Ferenc', image: '/images/kadar/gyurcsany_ferenc.jpg', category: 'image',
+      distractors: ['Nagy Imre', 'Kádár János', 'Göncz Árpád'] },
   ],
 }
