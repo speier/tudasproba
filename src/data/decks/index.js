@@ -1,14 +1,9 @@
 import korulottemATortenelem from './history/korulottem_a_tortenelem.js'
 import magyarAllamJelkepei from './history/magyar_allam_jelkepei.js'
 import idoszamitasKorszakok from './history/idoszamitas_korszakok.js'
-import ww2 from './history/ww2.js'
-import kommunistaHatalomatvetel from './history/kommunista_hatalomatvetel.js'
-import hideghaboru from './history/hideghaboru.js'
 import forradalom1956 from './history/forradalom_1956.js'
 import kadarRendszervaltas from './history/kadar_rendszervaltas.js'
 import kadarFogalmak from './history/kadar_rendszervaltas_fogalmak.js'
-import allatrendszertan from './biology/allatrendszertan.js'
-import vizVizpart from './kornyezet/viz_vizpart.js'
 import oszovetseg from './hittan/oszovetseg.js'
 import viragTermes from './termeszetismeret/virag_termes.js'
 import zoldsegek from './termeszetismeret/zoldsegek.js'
@@ -24,14 +19,9 @@ export const decks = [
   korulottemATortenelem,
   magyarAllamJelkepei,
   idoszamitasKorszakok,
-  ww2,
-  kommunistaHatalomatvetel,
-  hideghaboru,
   forradalom1956,
   kadarRendszervaltas,
   kadarFogalmak,
-  allatrendszertan,
-  vizVizpart,
   oszovetseg,
   viragTermes,
   zoldsegek,
