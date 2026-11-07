@@ -5,7 +5,7 @@ export default {
   subjectLabel: 'Történelem',
   subjectIcon: '📜',
   title: 'Kádár-kor, rendszerváltás, EU-csatlakozás',
-  description: 'Ismétlés: 1953-tól 2004-ig – dátumok, személyek és fogalmak 1953-tól 2004-ig',
+  description: 'Ismétlés: dátumok, személyek és fogalmak 1953-tól 2004-ig',
   icon: '🔄',
   categories: {
     date:    { label: 'Dátum',   icon: '📅' },
