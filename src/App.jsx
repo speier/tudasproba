@@ -83,6 +83,7 @@ export default function App() {
         {page === 'quiz' && <Quiz deck={selectedDeck} onBack={() => setPage('home')} />}
         {page === 'worksheet' && <Worksheet deck={selectedDeck} onBack={() => setPage('home')} />}
         {page === 'profile' && <Results />}
+        <p className="mt-8 text-center text-[10px] text-slate-300 print:hidden dark:text-slate-600">{__GIT_REV__}</p>
       </main>
 
       {/* Bottom tab bar */}

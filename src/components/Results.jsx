@@ -189,7 +189,6 @@ export default function Results() {
             dendora.hu
           </a>
         </p>
-        <p className="mt-0.5 text-[10px] text-slate-300 dark:text-slate-600">{__GIT_REV__}</p>
       </div>
     </div>
   )
