@@ -3,7 +3,6 @@ import magyarAllamJelkepei from './history/magyar_allam_jelkepei.js'
 import idoszamitasKorszakok from './history/idoszamitas_korszakok.js'
 import forradalom1956 from './history/forradalom_1956.js'
 import kadarRendszervaltas from './history/kadar_rendszervaltas.js'
-import kadarFogalmak from './history/kadar_rendszervaltas_fogalmak.js'
 import oszovetseg from './hittan/oszovetseg.js'
 import viragTermes from './termeszetismeret/virag_termes.js'
 import zoldsegek from './termeszetismeret/zoldsegek.js'
@@ -21,7 +20,6 @@ export const decks = [
   idoszamitasKorszakok,
   forradalom1956,
   kadarRendszervaltas,
-  kadarFogalmak,
   oszovetseg,
   viragTermes,
   zoldsegek,
