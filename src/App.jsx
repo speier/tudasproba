@@ -3,7 +3,23 @@ import Home from './components/Home'
 import Quiz from './components/Quiz'
 import Results from './components/Results'
 import Worksheet from './components/Worksheet'
-import { decks } from './data/decks/index'
+import { decks, getDeckById } from './data/decks/index'
+
+// Permalinks: #/quiz/<deckId>, #/worksheet/<deckId>, #/profile, empty = home
+function parseHash() {
+  const [, page, id] = window.location.hash.split('/')
+  if (page === 'profile') return { page, deck: null }
+  if (page === 'quiz' || page === 'worksheet') {
+    const deck = getDeckById(id)
+    if (deck) return { page, deck }
+  }
+  return { page: 'home', deck: null }
+}
+
+function toHash(page, deck) {
+  if (page === 'home') return ''
+  return deck ? `#/${page}/${deck.id}` : `#/${page}`
+}
 
 const TABS = [
   { id: 'home', label: 'Főoldal', icon: '🏠' },
@@ -11,8 +27,20 @@ const TABS = [
 ]
 
 export default function App() {
-  const [page, setPage] = useState('home')
-  const [selectedDeck, setSelectedDeck] = useState(() => decks[0])
+  const [route, setRoute] = useState(parseHash)
+  const page = route.page
+  const selectedDeck = route.deck ?? decks[0]
+  const setPage = (newPage, deck = null) => {
+    const hash = toHash(newPage, deck)
+    if (window.location.hash !== hash) window.history.pushState(null, '', hash || window.location.pathname)
+    setRoute({ page: newPage, deck })
+  }
+
+  useEffect(() => {
+    const onPop = () => setRoute(parseHash())
+    window.addEventListener('popstate', onPop)
+    return () => window.removeEventListener('popstate', onPop)
+  }, [])
   const [dark, setDark] = useState(() => {
     if (typeof window !== 'undefined') {
       return localStorage.getItem('dark') === 'true'
@@ -26,8 +54,7 @@ export default function App() {
   }, [dark])
 
   const handleNavigate = (newPage, deck = null) => {
-    if (deck) setSelectedDeck(deck)
-    setPage(newPage)
+    setPage(newPage, deck)
   }
 
   return (
