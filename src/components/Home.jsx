@@ -1,3 +1,4 @@
+import { useState } from 'react'
 import { loadResults, getRank, hasPlayedToday, ACHIEVEMENTS } from '../data/badges'
 import { getDecksByGrade } from '../data/decks/index'
 
@@ -8,6 +9,8 @@ const MOTIVATIONS = [
   'Minden nap egy lépéssel közelebb! 🎯',
   'A kitartás a siker kulcsa! 🔑',
 ]
+
+const GRADE_KEY = 'homeGrade'
 
 function getDeckInProgress(deckId) {
   try {
@@ -22,6 +25,16 @@ export default function Home({ navigate }) {
   const rank = getRank(data.best || 0)
   const played = hasPlayedToday()
   const grades = getDecksByGrade()
+  // The URL (#/osztaly/8) wins, so links and back/forward work; else the last tab used.
+  const [savedGrade, setSavedGrade] = useState(() => Number(localStorage.getItem(GRADE_KEY)))
+  const hashGrade = window.location.hash.match(/^#\/osztaly\/(\d+)$/)?.[1]
+  const gradeId = hashGrade ? Number(hashGrade) : savedGrade
+  const current = grades.find((g) => g.grade === gradeId) ?? grades[0]
+  const selectGrade = (grade) => {
+    setSavedGrade(grade)
+    localStorage.setItem(GRADE_KEY, grade)
+    window.history.replaceState(null, '', `#/osztaly/${grade}`)
+  }
   const motivation = MOTIVATIONS[Math.floor(Math.random() * MOTIVATIONS.length)]
 
   return (
@@ -52,58 +65,71 @@ export default function Home({ navigate }) {
         </button>
       )}
 
-      {/* Deck picker — grouped by grade, then by subject */}
-      {grades.map((gradeGroup) => (
-        <div key={gradeGroup.grade} className="animate-slide-up flex flex-col gap-3">
-          <div className="flex items-center gap-2">
-            <span className="rounded-full bg-gradient-to-r from-emerald-500 to-blue-500 px-3 py-1 text-xs font-bold text-white shadow-sm">
-              {gradeGroup.label}
-            </span>
-            <div className="h-px flex-1 bg-slate-200 dark:bg-slate-700" />
-          </div>
-          {gradeGroup.subjects.map((group) => (
-            <div key={group.subject} className="flex flex-col gap-2">
-              <p className="text-xs font-bold uppercase tracking-widest text-slate-400 dark:text-slate-500">
-                {group.icon} {group.label}
-              </p>
-              {group.decks.map((deck) => {
-                const inProgress = getDeckInProgress(deck.id)
-                return (
-                  <div key={deck.id} className="flex flex-col gap-1.5">
+      {/* Grade tabs */}
+      <div role="tablist" aria-label="Osztály" className="animate-slide-up grid auto-cols-fr grid-flow-col gap-1 rounded-2xl bg-slate-200/70 p-1 dark:bg-slate-800">
+        {grades.map((g) => (
+          <button
+            key={g.grade}
+            role="tab"
+            aria-selected={g === current}
+            onClick={() => selectGrade(g.grade)}
+            className={`rounded-xl px-3 py-2.5 text-sm font-bold transition-colors focus-visible:outline-2 focus-visible:outline-emerald-500 ${
+              g === current
+                ? 'bg-white text-emerald-700 shadow-sm dark:bg-slate-700 dark:text-emerald-300'
+                : 'text-slate-500 hover:text-slate-700 dark:text-slate-400 dark:hover:text-slate-200'
+            }`}
+          >
+            {g.label}
+          </button>
+        ))}
+      </div>
+
+      {/* Subjects of the selected grade, each in its own block */}
+      <div key={current.grade} role="tabpanel" className="animate-slide-up flex flex-col gap-4">
+        {current.subjects.map((group) => (
+          <section key={group.subject} className="overflow-hidden rounded-2xl bg-white shadow-md dark:bg-slate-800">
+            <h2 className="flex items-center gap-2 bg-slate-50 px-4 py-2.5 font-bold text-slate-700 dark:bg-slate-700/50 dark:text-slate-200">
+              <span className="text-xl">{group.icon}</span>
+              {group.label}
+            </h2>
+            <ul className="divide-y divide-slate-100 dark:divide-slate-700">
+              {group.decks.map((deck) => (
+                <li key={deck.id}>
                   <button
                     onClick={() => navigate('quiz', deck)}
-                    className="flex w-full items-center gap-4 rounded-2xl bg-white p-4 shadow-md transition-transform hover:scale-[1.01] active:scale-[0.99] dark:bg-slate-800"
+                    className="flex w-full items-center gap-3 px-4 py-3 text-left transition-colors hover:bg-slate-50 focus-visible:outline-2 focus-visible:-outline-offset-2 focus-visible:outline-emerald-500 dark:hover:bg-slate-700/40"
                   >
-                    <span className="text-4xl">{deck.icon}</span>
-                    <div className="flex-1 text-left">
-                      <p className="font-bold">{deck.title}</p>
-                      <p className="text-xs text-slate-500 dark:text-slate-400">{deck.description}</p>
-                      <p className="mt-1 text-xs text-slate-400 dark:text-slate-500">{deck.generate ? 'mindig új feladatok' : `${deck.items.length} kérdés`}</p>
-                    </div>
-                    <div className="flex flex-col items-end gap-1.5">
-                      {inProgress && (
-                        <span className="rounded-full bg-amber-100 px-2 py-0.5 text-xs font-bold text-amber-700 dark:bg-amber-900/40 dark:text-amber-300">
-                          folytatás
-                        </span>
-                      )}
-                      <span className="text-slate-300 dark:text-slate-600">→</span>
-                    </div>
+                    <span className="w-10 shrink-0 text-center text-3xl">{deck.icon}</span>
+                    <span className="flex-1">
+                      <span className="block font-bold">{deck.title}</span>
+                      <span className="block text-xs text-slate-500 dark:text-slate-400">{deck.description}</span>
+                      <span className="mt-0.5 flex items-center gap-2 text-xs text-slate-400 dark:text-slate-500">
+                        {deck.generate ? 'mindig új feladatok' : `${deck.items.length} kérdés`}
+                        {getDeckInProgress(deck.id) && (
+                          <span className="rounded-full bg-amber-100 px-2 py-0.5 font-bold text-amber-700 dark:bg-amber-900/40 dark:text-amber-300">
+                            folytatás
+                          </span>
+                        )}
+                      </span>
+                    </span>
+                    <span className="text-slate-300 dark:text-slate-600">→</span>
                   </button>
                   {deck.generate && (
-                    <button
-                      onClick={() => navigate('worksheet', deck)}
-                      className="self-end rounded-lg px-3 py-1 text-sm font-medium text-emerald-700 hover:bg-emerald-50 dark:text-emerald-400 dark:hover:bg-emerald-900/30"
-                    >
-                      🖨️ Nyomtatható gyakorlólap
-                    </button>
+                    <div className="-mt-1 pb-3 pl-[4.25rem]">
+                      <button
+                        onClick={() => navigate('worksheet', deck)}
+                        className="rounded-lg bg-emerald-50 px-2.5 py-1 text-xs font-semibold text-emerald-700 transition-colors hover:bg-emerald-100 focus-visible:outline-2 focus-visible:outline-emerald-500 dark:bg-emerald-900/30 dark:text-emerald-300 dark:hover:bg-emerald-900/50"
+                      >
+                        🖨️ Gyakorlólap – nyomtatás, PDF
+                      </button>
+                    </div>
                   )}
-                  </div>
-                )
-              })}
-            </div>
-          ))}
-        </div>
-      ))}
+                </li>
+              ))}
+            </ul>
+          </section>
+        ))}
+      </div>
 
       {/* First-time welcome tip */}
       {!data.attempts && (
