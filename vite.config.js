@@ -10,6 +10,10 @@ export default defineConfig({
     react(),
     tailwindcss(),
   ],
+  // html2pdf.js uses html2canvas, which can't parse Tailwind 4's oklch colors; the -pro fork can.
+  resolve: {
+    alias: { html2canvas: 'html2canvas-pro' },
+  },
   define: {
     __GIT_REV__: JSON.stringify(gitRev),
   },

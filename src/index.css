@@ -93,6 +93,9 @@ a,
   margin: 1.5cm;
 }
 
+/* html2pdf renders the sheet in .html2pdf__container: drop the on-screen separator above the answer key */
+.html2pdf__container .break-before-page { margin-top: 0; border-top: 0; padding-top: 0; }
+
 @media print {
   html { padding: 0; background: #fff; }
 }

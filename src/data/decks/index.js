@@ -10,6 +10,7 @@ import gyumolcsoskert from './termeszetismeret/gyumolcsoskert.js'
 import csaladOtthonNemzet from './irodalom/csalad_otthon_nemzet.js'
 import adatokMertekegysegek from './informatika/adatok_mertekegysegek.js'
 import szamrendszerekAtvaltas from './informatika/szamrendszerek_atvaltas.js'
+import nemetHaustiere from './nemet/haustiere.js'
 
 // All available decks. To add a new deck:
 //   1. Create src/data/decks/<subject>/<id>.js following the same shape
@@ -27,6 +28,7 @@ export const decks = [
   csaladOtthonNemzet,
   adatokMertekegysegek,
   szamrendszerekAtvaltas,
+  nemetHaustiere,
 ]
 
 export function getDeckById(id) {
