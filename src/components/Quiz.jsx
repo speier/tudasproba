@@ -71,7 +71,7 @@ function StreakBadge({ streak }) {
   )
 }
 
-export default function Quiz({ deck, onBack }) {
+export default function Quiz({ deck, onBack, onWorksheet }) {
   const STORAGE_KEY = `quizProgress_${deck.id}`
 
   const [state, setState] = useState(() => {
@@ -262,6 +262,14 @@ export default function Quiz({ deck, onBack }) {
             </button>
           )}
         </div>
+        {onWorksheet && (
+          <button
+            onClick={onWorksheet}
+            className="rounded-lg bg-emerald-50 px-3 py-1.5 text-sm font-semibold text-emerald-700 transition-colors hover:bg-emerald-100 dark:bg-emerald-900/30 dark:text-emerald-300 dark:hover:bg-emerald-900/50"
+          >
+            🖨️ Gyakorlólap – nyomtatás, PDF
+          </button>
+        )}
       </div>
     )
   }
@@ -280,7 +288,19 @@ export default function Quiz({ deck, onBack }) {
           </button>
           <h2 className="text-lg font-bold">{deck.icon} {deck.title}</h2>
         </div>
-        <StreakBadge streak={streak} />
+        <div className="flex items-center gap-2">
+          {onWorksheet && (
+            <button
+              onClick={onWorksheet}
+              disabled={selected !== null}
+              title="Gyakorlólap – nyomtatás, PDF"
+              className="rounded-lg bg-emerald-50 px-2.5 py-1 text-xs font-semibold text-emerald-700 transition-colors hover:bg-emerald-100 disabled:opacity-50 dark:bg-emerald-900/30 dark:text-emerald-300 dark:hover:bg-emerald-900/50"
+            >
+              🖨️ Gyakorlólap
+            </button>
+          )}
+          <StreakBadge streak={streak} />
+        </div>
       </div>
 
       {/* Progress bar */}
