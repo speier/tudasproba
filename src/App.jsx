@@ -34,6 +34,8 @@ export default function App() {
     const hash = toHash(newPage, deck)
     if (window.location.hash !== hash) window.history.pushState(null, '', hash || window.location.pathname)
     setRoute({ page: newPage, deck })
+    // A new page starts at the top; back/forward keeps the browser's scroll restore.
+    window.scrollTo(0, 0)
   }
 
   useEffect(() => {
