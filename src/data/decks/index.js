@@ -7,6 +7,8 @@ import oszovetseg from './hittan/oszovetseg.js'
 import viragTermes from './termeszetismeret/virag_termes.js'
 import zoldsegek from './termeszetismeret/zoldsegek.js'
 import gyumolcsoskert from './termeszetismeret/gyumolcsoskert.js'
+import baromfiudvar from './termeszetismeret/baromfiudvar.js'
+import szarvasmarha from './termeszetismeret/szarvasmarha.js'
 import csaladOtthonNemzet from './irodalom/csalad_otthon_nemzet.js'
 import adatokMertekegysegek from './informatika/adatok_mertekegysegek.js'
 import szamrendszerekAtvaltas from './informatika/szamrendszerek_atvaltas.js'
@@ -25,6 +27,8 @@ export const decks = [
   viragTermes,
   zoldsegek,
   gyumolcsoskert,
+  baromfiudvar,
+  szarvasmarha,
   csaladOtthonNemzet,
   adatokMertekegysegek,
   szamrendszerekAtvaltas,
