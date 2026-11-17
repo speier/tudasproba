@@ -1,0 +1,12 @@
+{
+  "$schema": "node_modules/wrangler/config-schema.json",
+  "name": "tudasproba",
+  "account_id": "1fdf8765193b637077421c8e9e090ea0",
+  "compatibility_date": "2026-11-01",
+  // Static Vite build only, no Worker code; unknown paths get index.html (hash routing, same as Pages did)
+  "assets": {
+    "directory": "./dist",
+    "not_found_handling": "single-page-application"
+  },
+  "routes": [{ "pattern": "tudasproba.dendora.hu", "custom_domain": true }]
+}

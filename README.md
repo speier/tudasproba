@@ -29,14 +29,16 @@ npm run dev
 
 ## 📦 Build & Deploy
 
+Workers Builds deploys every push to `main` to the `tudasproba` Worker (static assets, custom domain tudasproba.dendora.hu). By hand:
+
 ```bash
 npm run build
-npx wrangler pages deploy dist --project-name tudasproba
+npx wrangler deploy
 ```
 
 ## 🛠️ Tech stack
 
-React · Vite · Tailwind CSS · Cloudflare Pages
+React · Vite · Tailwind CSS · Cloudflare Workers (static assets)
 
 ## 📄 Licenc
 
